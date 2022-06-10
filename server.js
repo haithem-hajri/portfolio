@@ -62,7 +62,10 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
     }
     return null;
   },
-});
+  
+},null, {
+  resave: false,
+  saveUninitialized: true,});
 app.use(adminBro.options.rootPath, router);
 
 // Connect MongoDB at default port 27017.
