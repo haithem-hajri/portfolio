@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require("dotenv").config();
+
 const mongoose = require("mongoose");
 const contactUs = require("./routes/contact-us");
 const skills = require("./routes/skills");
@@ -13,12 +13,14 @@ const formidableMiddleware = require("express-formidable");
 const AdminBro = require("admin-bro");
 const AdminBroExpressjs = require("admin-bro-expressjs");
 const options = require("./admin.options");
-
+const config = require("dotenv").config();
 mongoose.Promise = global.Promise;
+if (process.env.NODE_ENV === "production") {
+  MONGO_URL = process.env.PROD_MONGO;
+} else {
+  MONGO_URL = process.env.DEV_MONGO;
+}
 
-const MONGO_URL =
-  process.env.MONGO_URL ||
-  "mongodb+srv://haithem711:Zizou99256188-portfolio@portfolio.blqodqd.mongodb.net/?retryWrites=true&w=majority";
   const PORT = process.env.PORT || 5001;
 const ADMIN = {
   email: process.env.ADMIN_EMAIL || "haithem@admin.com",
