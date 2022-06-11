@@ -30,7 +30,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 const SkillsCarousel = () => {
@@ -54,6 +54,7 @@ const SkillsCarousel = () => {
         //  dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         arrows={false}
+        
       >
         <HtmlLogo />
         <CSSLogo />
