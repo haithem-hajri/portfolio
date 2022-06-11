@@ -13,15 +13,16 @@ const formidableMiddleware = require("express-formidable");
 const AdminBro = require("admin-bro");
 const AdminBroExpressjs = require("admin-bro-expressjs");
 const options = require("./admin.options");
-const config = require("dotenv").config();
+require("dotenv").config();
 mongoose.Promise = global.Promise;
 if (process.env.NODE_ENV === "production") {
-  MONGO_URL = process.env.PROD_MONGO;
+  MONGO_URI = process.env.MONGO_URI;
 } else {
-  MONGO_URL = process.env.DEV_MONGO;
+  MONGO_URI = process.env.DEV_MONGO;
 }
 
-  const PORT = process.env.PORT || 5001;
+
+const PORT = process.env.PORT || 5001;
 const ADMIN = {
   email: process.env.ADMIN_EMAIL || "haithem@admin.com",
   password: process.env.ADMIN_PASSWORD || "admin",
@@ -43,34 +44,37 @@ app.use("/api", experience);
 app.use("/api", about);
 app.use("/api", projects);
 
-
-
 // admin bro no authentication
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro(options);
 //const router = AdminBroExpressjs.buildRouter(adminBro);
 // Build and use a router which will handle all AdminBro routes with authentication
-const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
-  cookieName: process.env.COOKIE_NAME || "admin-bro",
-  cookiePassword: process.env.COOKIE_PASSWORD || "admin",
-  authenticate: async (email, password) => {
-    if (email === ADMIN.email && password === ADMIN.password) {
-      return {
-        email: ADMIN.email,
-        isAdmin: true,
-      };
-    }
-    return null;
+const router = AdminBroExpressjs.buildAuthenticatedRouter(
+  adminBro,
+  {
+    cookieName: process.env.COOKIE_NAME || "admin-bro",
+    cookiePassword: process.env.COOKIE_PASSWORD || "admin",
+    authenticate: async (email, password) => {
+      if (email === ADMIN.email && password === ADMIN.password) {
+        return {
+          email: ADMIN.email,
+          isAdmin: true,
+        };
+      }
+      return null;
+    },
   },
-  
-},null, {
-  resave: false,
-  saveUninitialized: true,});
+  null,
+  {
+    resave: false,
+    saveUninitialized: true,
+  }
+);
 app.use(adminBro.options.rootPath, router);
 
 // Connect MongoDB at default port 27017.
 mongoose.connect(
-  MONGO_URL,
+  MONGO_URI,
   {
     useNewUrlParser: true,
   },
@@ -82,11 +86,18 @@ mongoose.connect(
     }
   }
 );
-if(process.env.NODE_ENV=="production"){
-  app.use(express.static('client/build'))
-  const path = require('path')
-  app.get("*",(req,res)=>{
-      res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-  })
+mongoose.connection.once('open', function(){
+  console.log('Conection has been made!');
+      }).on('error', function(error){
+   console.log('Error is: ', error);
+    });
+if (
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "staging"
+) {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
 }
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
