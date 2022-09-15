@@ -4,6 +4,7 @@ exports.getProjects = (req, res) => {
   const options = {
     page: page,
     limit: 3,
+    sort: { createdAt: -1 },
   };
   Project
   .paginate({}, options, (err, result) => {
