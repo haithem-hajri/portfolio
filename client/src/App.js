@@ -9,12 +9,13 @@ import ContactUs from "./components/Contact/ContactUs";
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
 import axios from "axios"
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga4";
+
 const App = () => {
   //G-67H0H5XP54
   React.useEffect(()=>{
-    ReactGA.initialize('G-67H0H5XP54');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.initialize('G-67H0H5XP54'); 
+    ReactGA.send('/');
   },[])
   // const [ip, setIP] = React.useState("");
 
