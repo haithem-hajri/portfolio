@@ -9,14 +9,14 @@ import ContactUs from "./components/Contact/ContactUs";
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
 import axios from "axios"
-import ReactGA from "react-ga4";
-
+import ReactGA4 from "react-ga4";
+ReactGA4.initialize('G-67H0H5XP54'); 
 const App = () => {
   //G-67H0H5XP54
   React.useEffect(()=>{
-    console.log('helloo')
-    ReactGA.initialize('G-67H0H5XP54'); 
-    ReactGA.send('/');
+   // console.log('helloo')
+    
+   ReactGA4.send({ hitType: "pageview", page: window.location.pathname });
   },[])
   // const [ip, setIP] = React.useState("");
 
