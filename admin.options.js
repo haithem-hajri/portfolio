@@ -6,6 +6,7 @@ const Education = require("./models/Education");
 const Experience = require("./models/Experience");
 const About = require("./models/About");
 const Project = require("./models/Project");
+const Visitor = require('./models/Visitor')
 // We have to tell AdminBro that we will manage mongoose resources with it
 AdminBro.registerAdapter(require("admin-bro-mongoose"));
 //about option
@@ -27,6 +28,7 @@ const options = {
     Education,
     Experience,
     Project,
+    Visitor,
     { resource: About, options: AboutResourceOptions },
   ],
   rootPath: "/admin",

@@ -7,7 +7,6 @@ import { API_URL } from "../../env";
 import Experience from "../Experience/Experience";
 const Education = () => {
   const [educations, setEducations] = useState([]);
-
   useEffect(() => {
     axios.get(`${API_URL}/getEducations`).then((res) => {
       setEducations(res.data);

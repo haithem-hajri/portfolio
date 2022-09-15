@@ -6,6 +6,7 @@ const contactUs = require("./routes/contact-us");
 const skills = require("./routes/skills");
 const education = require("./routes/education");
 const experience = require("./routes/experience");
+const visitor = require ('./routes/visitor')
 const about = require("./routes/about");
 const projects = require("./routes/project");
 const formidableMiddleware = require("express-formidable");
@@ -42,7 +43,7 @@ app.use("/api", education);
 app.use("/api", experience);
 app.use("/api", about);
 app.use("/api", projects);
-
+app.use('/api',visitor)
 // admin bro no authentication
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro(options);
@@ -57,7 +58,7 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
       if (email === ADMIN.email && password === ADMIN.password) {
         return {
           email: ADMIN.email,
-          isAdmin: true,
+          isAdmin: true, 
         };
       }
       return null;
