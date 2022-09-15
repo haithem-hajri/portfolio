@@ -1,9 +1,18 @@
 import React from "react";
 import "./ProjectCard.scss";
-
+import ReactGA4 from "react-ga4";
 const ProjectCard = (props) => {
   const { project } = props;
-
+  const handleEvent =()=>{
+    ReactGA4.event({
+      category: "demo checking",
+      action: project?.name,
+     // label: "your label", // optional
+    //  value: 99, // optional, must be a number
+    //  nonInteraction: true, // optional, true/false
+    //  transport: "xhr", // optional, beacon/xhr/image
+    });
+  }
   return (
     <div className="card-inner">
       <div className="card">
@@ -24,7 +33,7 @@ const ProjectCard = (props) => {
               <small>GITHUB</small>
             </button>
           </a>
-          <a href={project.demo} target="_blank" rel="noreferrer">
+          <a href={project.demo} target="_blank" rel="noreferrer" onClick={handleEvent}>
             <button className="btn">
               <small>DEMO </small>
             </button>

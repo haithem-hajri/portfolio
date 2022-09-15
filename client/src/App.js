@@ -14,7 +14,7 @@ ReactGA4.initialize('G-67H0H5XP54');
 const App = () => {
   //G-67H0H5XP54
   React.useEffect(()=>{
-   // console.log('helloo')
+   // console.log('helloo') 
     
    ReactGA4.send({ hitType: "pageview", page: window.location.pathname });
   },[])

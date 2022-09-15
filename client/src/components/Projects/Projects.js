@@ -5,6 +5,7 @@ import Paginate from "../../helpers/pagination/Paginate";
 import axios from "axios";
 import { API_URL } from "../../env";
 import { SpinnerDiamond } from "spinners-react";
+
 const Projects = () => {
   const [projects, setProjects] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -23,6 +24,7 @@ const Projects = () => {
         setIsLoading(true);
       });
   }, [page]);
+ 
   return (
     <div id="projects" className="container-projects">
       <h1 className="title-projects">My Projects</h1>
