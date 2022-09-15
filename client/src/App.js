@@ -14,6 +14,7 @@ import ReactGA from "react-ga4";
 const App = () => {
   //G-67H0H5XP54
   React.useEffect(()=>{
+    console.log('helloo')
     ReactGA.initialize('G-67H0H5XP54'); 
     ReactGA.send('/');
   },[])
