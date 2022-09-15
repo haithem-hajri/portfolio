@@ -3,17 +3,14 @@
 
 /*Card Styling*/
 .card-inner {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 12px;
-
-  @media (min-width: 600px) {
-    width: 60%;
-  }
+  width: 300px;
+ 
+  // @media (min-width: 600px) {
+  //   width: 60%;
+  // }
 
   @media (min-width: 1024px) {
-    width: 30%;
+  //  width: 30%;
   }
 
   .card {
