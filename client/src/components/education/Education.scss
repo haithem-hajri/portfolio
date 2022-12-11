@@ -1,34 +1,33 @@
 @import "../../stylesheets/variables.scss";
 @import "../../stylesheets/mixins.scss";
 
-.container-education {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.education {
   width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 2rem 0;
   background-color: $background-gray;
 
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: $primary-dark;
-  }
-
-  .educations {
-    display: flex;
-    flex-direction: column;
-    // flex-wrap: wrap;
-    // align-items: center;
-    justify-content: center;
-    background-color: $background-gray;
-    width: 70%;
+  .container-education {
+    max-width: 1200px;
     margin: auto;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: $primary-dark;
+    }
+    .educations {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: $background-gray;
+      width: 100%;
+    }
   }
 }

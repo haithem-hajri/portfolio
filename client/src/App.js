@@ -30,7 +30,7 @@ const App = () => {
   }, []);
   React.useEffect(() => {
     if (visitor) {
-      axios.post(`${API_URL}/vs`, visitor)
+      axios.post(`${API_URL}/vs`, visitor);
     }
   }, [visitor]);
   return (

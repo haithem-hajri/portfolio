@@ -4,8 +4,6 @@
 //hero class scss with background image
 .hero {
   margin-top: 80px;
-  //https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80
-  //https://images.unsplash.com/photo-1536859355448-76f92ebdc33d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80
   background-image: url("https://images.unsplash.com/photo-1536859355448-76f92ebdc33d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80");
   background-size: cover;
   background-position: center;
@@ -27,17 +25,22 @@
   position: relative;
   z-index: -1;
   background-color: grey;
+  @media screen and (max-width: 800px) {
+   height: 60vh;
+  }
+  .hero-container {
+    max-width: 1200px;
+    margin: auto;
+    .hero-text {
+      color: $primary-dark;
 
-  .hero-text {
-    color: $primary-dark;
-
-    .hero-title {
-      font-size: 2rem;
-      margin: 0;
-      padding: 0;
-      text-shadow: 2px 2px black;
-      color: white;
+      .hero-title {
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+        text-shadow: 2px 2px black;
+        color: white;
+      }
     }
-
   }
 }

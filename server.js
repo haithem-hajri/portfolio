@@ -6,7 +6,7 @@ const contactUs = require("./routes/contact-us");
 const skills = require("./routes/skills");
 const education = require("./routes/education");
 const experience = require("./routes/experience");
-const visitor = require ('./routes/visitor')
+const visitor = require("./routes/visitor");
 const about = require("./routes/about");
 const projects = require("./routes/project");
 const formidableMiddleware = require("express-formidable");
@@ -21,13 +21,12 @@ if (process.env.NODE_ENV === "production") {
   MONGO_URI = process.env.DEV_MONGO;
 }
 
-
 const PORT = process.env.PORT || 5001;
 const ADMIN = {
   email: process.env.ADMIN_EMAIL || "haithem@admin.com",
   password: process.env.ADMIN_PASSWORD || "admin",
 };
-
+ // "dev": "concurrently \"npm run server\" \"npm run client\"",
 // express server definition
 const app = express();
 app.use(formidableMiddleware());
@@ -43,7 +42,7 @@ app.use("/api", education);
 app.use("/api", experience);
 app.use("/api", about);
 app.use("/api", projects);
-app.use('/api',visitor)
+app.use("/api", visitor);
 // admin bro no authentication
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro(options);
@@ -58,7 +57,7 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
       if (email === ADMIN.email && password === ADMIN.password) {
         return {
           email: ADMIN.email,
-          isAdmin: true, 
+          isAdmin: true,
         };
       }
       return null;
@@ -86,11 +85,13 @@ mongoose.connect(
     }
   }
 );
-mongoose.connection.once('open', function(){
-  console.log('Conection has been made!');
-      }).on('error', function(error){
-   console.log('Error is: ', error);
-    });
+mongoose.connection
+  .once("open", function () {
+    console.log("Conection has been made!");
+  })
+  .on("error", function (error) {
+    console.log("Error is: ", error);
+  });
 if (
   process.env.NODE_ENV === "production" ||
   process.env.NODE_ENV === "staging"
