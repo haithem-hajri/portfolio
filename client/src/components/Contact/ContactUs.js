@@ -2,7 +2,6 @@ import React from "react";
 import "./Contact.scss";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { API_URL } from "../../env";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SpinnerRoundOutlined } from "spinners-react";
@@ -33,7 +32,7 @@ const ContactUs = () => {
   const onSubmit = (data) => {
     setIsLoading(true);
     axios
-      .post(API_URL + "/contactUs", data)
+      .post(process.env.REACT_APP_API_URL + "/contactUs", data)
       .then((res) => {
         setIsLoading(false);
         notify();

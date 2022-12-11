@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./About.scss";
 import axios from "axios";
-import { API_URL } from "../../env";
 const About = () => {
   const [about, setAbout] = useState({});
   useEffect(() => {
-    axios.get(`${API_URL}/getAbout`).then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/getAbout`).then((res) => {
       setAbout(res.data);
     });
   }, []);
   return (
     <div className="about">
-      <div className="about-container"> 
+      <div className="about-container">
         {about && (
           <div className="box-about box-down blue">
             <div className="about-content">

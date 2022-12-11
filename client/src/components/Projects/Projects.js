@@ -3,7 +3,7 @@ import "./Projects.scss";
 import ProjectCard from "../cards/ProjectCard/ProjectCard";
 import Paginate from "../../helpers/pagination/Paginate";
 import axios from "axios";
-import { API_URL } from "../../env";
+
 import { SpinnerDiamond } from "spinners-react";
 
 const Projects = () => {
@@ -14,7 +14,7 @@ const Projects = () => {
   React.useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`${API_URL}/getProjects?page=${page}`)
+      .get(`${process.env.REACT_APP_API_URL}/getProjects?page=${page}`)
       .then((res) => {
         setProjects(res.data.docs);
         setTotalPages(res.data.totalPages);

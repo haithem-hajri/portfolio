@@ -10,7 +10,6 @@ import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
 import axios from "axios";
 import ReactGA4 from "react-ga4";
-import { API_URL } from "./env";
 ReactGA4.initialize("G-67H0H5XP54");
 const App = () => {
   //G-67H0H5XP54
@@ -30,7 +29,7 @@ const App = () => {
   }, []);
   React.useEffect(() => {
     if (visitor) {
-      axios.post(`${API_URL}/vs`, visitor);
+      axios.post(`${process.env.REACT_APP_API_URL}/vs`, visitor);
     }
   }, [visitor]);
   return (

@@ -3,12 +3,12 @@ import "./Skills.scss";
 import ChartProgress from "../cards/SkillsCard/ChartProgress";
 import SkillsCarousel from "./SkillsCarousel";
 import axios from "axios";
-import { API_URL } from "../../env";
+
 const Skills = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_URL}/getSkills`).then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/getSkills`).then((res) => {
       setSkills(res.data);
     });
   }, []);
