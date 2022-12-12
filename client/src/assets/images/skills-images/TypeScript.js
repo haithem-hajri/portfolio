@@ -3,8 +3,8 @@ import React from "react";
 const TypeScript = () => {
   return (
     <svg
-      width="150px"
-      height="150px"
+      width="120px"
+      height="120px"
       viewBox="0 0 256 256"
       version="1.1"
       preserveAspectRatio="xMidYMid"

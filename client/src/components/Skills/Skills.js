@@ -1,18 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Skills.scss";
 import ChartProgress from "../cards/SkillsCard/ChartProgress";
 import SkillsCarousel from "./SkillsCarousel";
-import axios from "axios";
-
+import { fetchSkills } from "../../actions/actions";
+import { useQuery } from "@tanstack/react-query";
+import SkillsSkeleton from "../skeletons/SkillsSkeleton";
 const Skills = () => {
-  const [skills, setSkills] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/getSkills`).then((res) => {
-      setSkills(res.data);
-    });
-  }, []);
-
+  const {
+    isError,
+    isLoading,
+    isSuccess,
+    data: skills,
+    error,
+  } = useQuery(["skills"], fetchSkills, { staleTime: 60000 });
+  if (isLoading) {
+    return (
+      <div>
+        <SkillsCarousel />
+        <div className="container-skills" id="skills">
+          <h1 className="title-skills">My SKILLS</h1>
+          <SkillsSkeleton />
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <SkillsCarousel />

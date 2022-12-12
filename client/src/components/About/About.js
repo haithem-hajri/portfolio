@@ -1,24 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAbout } from "../../actions/actions";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "./About.scss";
-import axios from "axios";
+
 const About = () => {
-  const [about, setAbout] = useState({});
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/getAbout`).then((res) => {
-      setAbout(res.data);
-    });
-  }, []);
+  const {
+    isLoading: isLoadingAbout,
+    data: aboutData,
+    isError,
+  } = useQuery(["about"], fetchAbout, { staleTime: 120000 });
+
+  if (isLoadingAbout || isError) {
+    return (
+      <div className="skeleton">
+        <Skeleton height={30} width={140} />
+        <Skeleton circle width={150} height={150} />
+        <Skeleton width={300} height={30} count={3} />
+      </div>
+    );
+  }
   return (
     <div className="about">
       <div className="about-container">
-        {about && (
+        {aboutData && (
           <div className="box-about box-down blue">
             <div className="about-content">
-              <h1>{about.name}</h1>
-              <img className="avatar" src={about.img} alt="me" />
+              <h1>{aboutData.name}</h1>
+              <img
+                loading="lazy"
+                className="avatar"
+                src={aboutData.img}
+                alt="me"
+              />
               <div
                 className="about-message"
-                dangerouslySetInnerHTML={{ __html: about.message }}
+                dangerouslySetInnerHTML={{ __html: aboutData.message }}
               />
             </div>
           </div>

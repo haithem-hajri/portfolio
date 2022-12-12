@@ -6,8 +6,8 @@ const Github = () => {
       aria-label="GitHub"
       role="img"
       viewBox="0 0 512 512"
-      width="150px"
-      height="150px"
+      width="120px"
+      height="120px"
     >
       <rect width="512" height="512" rx="15%" fill="#1B1817" />
       <path

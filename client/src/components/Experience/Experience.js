@@ -1,20 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Experience.scss";
 import EducationCard from "../cards/EducationCard/EducationCard";
-import axios from "axios";
+import { fetchExperience } from "../../actions/actions";
+import { useQuery } from "@tanstack/react-query";
+import CardSkeleton from "../skeletons/CardSkeleton";
 const Experience = () => {
-  const [experiences, setExperience] = useState([]);
+  const { isError, isLoading, isSuccess, data, error } = useQuery(
+    ["experience"],
+    fetchExperience,
+    { staleTime: 60000 }
+  );
+  if (isLoading || isError) {
+    return (
+      <>
+        <h1 className="title">My Experience</h1>
+        <CardSkeleton/>
+      </>
+    );
+  }
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/getExperience`).then((res) => {
-      setExperience(res.data);
-    });
-  }, []);
   return (
     <>
       <h1 className="title">My Experience</h1>
       <div className="experiences">
-        {experiences.map((experience) => {
+        {data.map((experience) => {
           return <EducationCard education={experience} key={experience._id} />;
         })}
       </div>

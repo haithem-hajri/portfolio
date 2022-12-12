@@ -35,7 +35,7 @@ const responsive = {
 };
 const SkillsCarousel = () => {
   return (
-    <div>
+    <div style={{padding:"10px"}}>
       <Carousel
         swipeable={false}
         draggable={true}

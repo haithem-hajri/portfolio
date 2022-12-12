@@ -19,6 +19,7 @@ $translateValue: -$paddingSize - $borderWidth;
 .about {
   width: 100%;
   background-color: $background-gray;
+  min-width: 20vh;
   .about-container {
     max-width: 1200px;
     margin: auto;
@@ -100,4 +101,18 @@ $translateValue: -$paddingSize - $borderWidth;
     bottom: -2 * $borderWidth;
     transform: translateX(-50%) rotate(180deg);
   }
+}
+.skeleton {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+  // justify-content: center;
+  // flex-direction: column;
+  // display: flex;
+  // align-items: center;
 }
