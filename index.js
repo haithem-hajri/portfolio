@@ -86,7 +86,7 @@ mongoose.connect(
 );
 mongoose.connection
   .once("open", function () {
-    console.log("Conection has been made!");
+    console.log("Conection has been made!!");
   })
   .on("error", function (error) {
     console.log("Error is: ", error);
