@@ -41,7 +41,7 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
     saveUninitialized: true,
   }
 );
-const adminBro = new AdminBro(options);
+// const adminBro = new AdminBro(options);
 const PORT = process.env.PORT || 5001;
 const ADMIN = {
   email: process.env.ADMIN_EMAIL || "haithem@admin.com",
@@ -68,7 +68,7 @@ app.use("/api", experience);
 app.use("/api", about);
 app.use("/api", projects);
 app.use("/api", visitor);
-app.use(adminBro.options.rootPath, router);
+// app.use(adminBro.options.rootPath, router);
 
 mongoose.connect(
   MONGODB_URI,
