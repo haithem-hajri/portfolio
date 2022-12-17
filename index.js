@@ -34,7 +34,7 @@ app.use(formidableMiddleware());
 //middlwares
 app.use(cors());
 app.use(bodyParser.json());
-const adminBro = new AdminBro(options);
+// const adminBro = new AdminBro(options);
 //const router = AdminBroExpressjs.buildRouter(adminBro);
 // Build and use a router which will handle all AdminBro routes with authentication
 const router = AdminBroExpressjs.buildAuthenticatedRouter(
