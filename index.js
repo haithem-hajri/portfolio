@@ -20,27 +20,27 @@ if (process.env.NODE_ENV === "production") {
 } else {
   MONGODB_URI = process.env.DEV_MONGO;
 }
-const router = AdminBroExpressjs.buildAuthenticatedRouter(
-  adminBro,
-  {
-    cookieName: process.env.COOKIE_NAME || "admin-bro",
-    cookiePassword: process.env.COOKIE_PASSWORD || "admin",
-    authenticate: async (email, password) => {
-      if (email === ADMIN.email && password === ADMIN.password) {
-        return {
-          email: ADMIN.email,
-          isAdmin: true,
-        };
-      }
-      return null;
-    },
-  },
-  null,
-  {
-    resave: false,
-    saveUninitialized: true,
-  }
-);
+// const router = AdminBroExpressjs.buildAuthenticatedRouter(
+//   adminBro,
+//   {
+//     cookieName: process.env.COOKIE_NAME || "admin-bro",
+//     cookiePassword: process.env.COOKIE_PASSWORD || "admin",
+//     authenticate: async (email, password) => {
+//       if (email === ADMIN.email && password === ADMIN.password) {
+//         return {
+//           email: ADMIN.email,
+//           isAdmin: true,
+//         };
+//       }
+//       return null;
+//     },
+//   },
+//   null,
+//   {
+//     resave: false,
+//     saveUninitialized: true,
+//   }
+// );
 // const adminBro = new AdminBro(options);
 const PORT = process.env.PORT || 5001;
 const ADMIN = {
@@ -54,7 +54,7 @@ app.use(formidableMiddleware());
 
 //middlwares
 app.use(cors());
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 //const router = AdminBroExpressjs.buildRouter(adminBro);
 // Build and use a router which will handle all AdminBro routes with authentication
