@@ -67,7 +67,7 @@ app.use("/api", experience);
 app.use("/api", about);
 app.use("/api", projects);
 app.use("/api", visitor);
-app.use(adminBro.options.rootPath);
+// app.use(adminBro.options.rootPath);
 
 mongoose.connect(
   MONGODB_URI,
