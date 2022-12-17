@@ -70,11 +70,7 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
   }
 );
 app.use(adminBro.options.rootPath, router);
-// "server": "nodemon server.js",
-    // "client": "npm start --prefix client",
-    // "clientinstall": "npm install --prefix client",
-    // "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-// Connect MongoDB at default port 27017.
+
 mongoose.connect(
   MONGO_URI,
   {
