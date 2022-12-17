@@ -33,17 +33,7 @@ app.use(formidableMiddleware());
 
 //middlwares
 app.use(cors());
-//app.use(bodyParser.json());
-//routes
-
-app.use("/api", contactUs);
-app.use("/api", skills);
-app.use("/api", education);
-app.use("/api", experience);
-app.use("/api", about);
-app.use("/api", projects);
-app.use("/api", visitor);
-
+app.use(bodyParser.json());
 const adminBro = new AdminBro(options);
 //const router = AdminBroExpressjs.buildRouter(adminBro);
 // Build and use a router which will handle all AdminBro routes with authentication
@@ -68,6 +58,15 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
     saveUninitialized: true,
   }
 );
+//routes
+
+app.use("/api", contactUs);
+app.use("/api", skills);
+app.use("/api", education);
+app.use("/api", experience);
+app.use("/api", about);
+app.use("/api", projects);
+app.use("/api", visitor);
 app.use(adminBro.options.rootPath);
 
 mongoose.connect(
