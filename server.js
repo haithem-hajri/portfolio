@@ -16,9 +16,9 @@ const options = require("./admin.options");
 require("dotenv").config();
 mongoose.Promise = global.Promise;
 if (process.env.NODE_ENV === "production") {
-  MONGO_URI = process.env.MONGO_URI;
+  MONGODB_URI = process.env.MONGODB_URI;
 } else {
-  MONGO_URI = process.env.DEV_MONGO;
+  MONGODB_URI = process.env.DEV_MONGO;
 }
 
 const PORT = process.env.PORT || 5001;
@@ -72,7 +72,7 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
 app.use(adminBro.options.rootPath, router);
 
 mongoose.connect(
-  MONGO_URI,
+  MONGODB_URI,
   {
     useNewUrlParser: true,
   },
