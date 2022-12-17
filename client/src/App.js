@@ -17,7 +17,7 @@ const App = () => {
   //G-67H0H5XP54
 
   React.useEffect(() => {
-    ReactGA4.send({ hitType: "pageview", page: window.location.pathname });
+    ReactGA4.send({ hitType: "pageview", page: window.location.pathname }) ;
   }, []);
   const [visitor, setVisitor] = React.useState(null);
   //creating function to load ip address from the API
