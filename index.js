@@ -29,7 +29,7 @@ const ADMIN = {
  // "dev": "concurrently \"npm run server\" \"npm run client\"",
 // express server definition
 const app = express();
-// app.use(formidableMiddleware());
+app.use(formidableMiddleware());
 
 //middlwares
 app.use(cors());
