@@ -20,23 +20,6 @@ if (process.env.NODE_ENV === "production") {
 } else {
   MONGODB_URI = process.env.DEV_MONGO;
 }
-
-const PORT = process.env.PORT || 5001;
-const ADMIN = {
-  email: process.env.ADMIN_EMAIL || "haithem@admin.com",
-  password: process.env.ADMIN_PASSWORD || "admin",
-};
- // "dev": "concurrently \"npm run server\" \"npm run client\"",
-// express server definition
-const app = express();
-app.use(formidableMiddleware());
-
-//middlwares
-app.use(cors());
-app.use(bodyParser.json());
-// const adminBro = new AdminBro(options);
-//const router = AdminBroExpressjs.buildRouter(adminBro);
-// Build and use a router which will handle all AdminBro routes with authentication
 const router = AdminBroExpressjs.buildAuthenticatedRouter(
   adminBro,
   {
@@ -58,6 +41,24 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(
     saveUninitialized: true,
   }
 );
+const adminBro = new AdminBro(options);
+const PORT = process.env.PORT || 5001;
+const ADMIN = {
+  email: process.env.ADMIN_EMAIL || "haithem@admin.com",
+  password: process.env.ADMIN_PASSWORD || "admin",
+};
+// "dev": "concurrently \"npm run server\" \"npm run client\"",
+// express server definition
+const app = express();
+app.use(formidableMiddleware());
+
+//middlwares
+app.use(cors());
+app.use(bodyParser.json());
+
+//const router = AdminBroExpressjs.buildRouter(adminBro);
+// Build and use a router which will handle all AdminBro routes with authentication
+
 //routes
 
 app.use("/api", contactUs);
@@ -67,7 +68,7 @@ app.use("/api", experience);
 app.use("/api", about);
 app.use("/api", projects);
 app.use("/api", visitor);
-// app.use(adminBro.options.rootPath);
+app.use(adminBro.options.rootPath, router);
 
 mongoose.connect(
   MONGODB_URI,
@@ -99,4 +100,4 @@ if (
   });
 }
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-module.exports = app
+module.exports = app;
